@@ -1,0 +1,42 @@
+
+USE MASTER
+GO
+
+DROP DATABASE IF EXISTS BMDB
+
+CREATE DATABASE BMDB
+GO
+
+-- Movie Table
+
+USE BMDB
+
+CREATE Table Credit(
+ID			INT					IDENTITY(1,1) PRIMARY KEY,
+MovieID		INT					NOT NULL, 
+ActorID		INT					NOT NULL, 
+Role		VARCHAR(100)		NOT NULL, 
+CONSTRAINT UC_Credit UNIQUE (MovieId, ActorId),
+CONSTRAINT FK_CreditMovie FOREIGN KEY (MovieID)
+REFERENCES Movie(ID)
+);
+
+CREATE TABLE Actor(
+ID			INT					IDENTITY(1,1) Primary Key, 
+FirstName	VARCHAR(50)			NOT NULL, 
+LastName	VARCHAR(50)			NOT NULL, 
+Gender		VARCHAR(1)			NOT NULL, 
+BirthDate	DATE				NOT NULL, 
+CONSTRAINT UC_Actor UNIQUE (FirstName, LastName, BirthDate)
+);
+
+CREATE TABLE Movie(
+ID			INT					IDENTITY(1,1) Primary Key, 
+Title		VARCHAR(75)			NOT NULL, 
+[Year]		INT					NOT NULL, 
+Rating		VARCHAR(5)			NOT NULL, 
+Director	VARCHAR(75)			NOT NULL, 
+CONSTRAINT UC_Movie UNIQUE (Title, [Year])
+);
+
+GO
