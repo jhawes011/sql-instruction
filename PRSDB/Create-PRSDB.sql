@@ -9,7 +9,7 @@ GO
 use prsdb
 
 create table "User"(
-	ID			INT			NOT NULL PRIMARY KEY,
+	ID			INT			IDENTITY(1,1) PRIMARY KEY,
 	Username	VARCHAR(20)	NOT NULL,
 	Password	VARCHAR(10) NOT NULL,
 	FirstName	VARCHAR(20) NOT NULL,
@@ -23,7 +23,7 @@ create table "User"(
 GO
 
 create table Vendor(
-	ID			INT			NOT NULL PRIMARY KEY,
+	ID			INT			IDENTITY(1,1) PRIMARY KEY,
 	Code		VARCHAR(10)	NOT NULL,
 	Name		VARCHAR(255)NOT NULL,
 	Address		VARCHAR(255)NOT NULL,
@@ -32,12 +32,12 @@ create table Vendor(
 	Zip			VARCHAR(5)	NOT NULL,
 	PhoneNumber	VARCHAR(12)	NOT NULL,
 	Email		VARCHAR(100)NOT NULL,
-	 CONSTRAINT vcode UNIQUE (Code));
+	 CONSTRAINT vcode UNIQUE (Code)); 
 
 	GO
 
 create table [Product](
-	ID			INT			 PRIMARY KEY,
+	ID			INT			 IDENTITY(1,1) PRIMARY KEY,
 	VendorID	INT			NOT NULL ,
 	PartNumber	VARCHAR(50) NOT NULL,
 	Name		VARCHAR(150)NOT NULL,
@@ -50,7 +50,7 @@ create table [Product](
 GO
 
 create table [Request](
-	ID			INT				NOT NULL Primary Key,
+	ID			INT				IDENTITY(1,1) Primary Key,
 	UserID		INT				NOT NULL ,
 	RequestNumber		VARCHAR(20) NOT NULL,
 	"Description"		VARCHAR(100) NOT NULL,
@@ -67,7 +67,7 @@ create table [Request](
 GO
 
 create table "LineItem"(
-	ID			INT		NOT NULL PRIMARY KEY,
+	ID			INT		IDENTITY(1,1) PRIMARY KEY,
 	RequestID	INT		NOT NULL,
 	ProductID	INT		NOT NULL,
 	Quantity	INT		NOT NULL,
